@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const userRoute = require("./routes/userRoute")
 
 const rooms = ["general", "tech", "finance", "crypto"]
 // we want the client to able to access the server
@@ -12,6 +13,10 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
+//connecting to the database
+require("./connection")
+
+app.use("/user/", userRoute)
 
 const server = require("http").createServer(app)
 const port = 5000
