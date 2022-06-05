@@ -32,4 +32,9 @@ router.post("/login", async (req, res) => {
     }
 })
 
+router.get("/verify/:email", async (req, res) => {
+    const { email } = req.params;
+    const user = await User.find({ email: email })
+    res.json(user)
+})
 module.exports = router
